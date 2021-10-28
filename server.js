@@ -1,7 +1,7 @@
 const app = require("express")();
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`sever is running on port ${{port}}`));
+app.listen(port, () => console.log(`sever is running on port ${port}`));
 
 const songs = [
   {
