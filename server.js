@@ -3,7 +3,7 @@ const port = 3000;
 
 app.listen(process.env.PORT || port, () => console.log(`sever is running on port ${port}`));
 
-const songs = [
+/* const songs = [
   {
     id: 1,
     name: "100 miles",
@@ -54,3 +54,4 @@ app.get("/songs", (req, res) => {
     songs,
   });
 });
+*/
