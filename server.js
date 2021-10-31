@@ -1,6 +1,8 @@
 var cors = require('cors')
 const app = require("express")();
+const express = require('express')
 app.use(cors());
+app.use('/static', express.static('public'));
 const port = 3000;
 
 app.listen(process.env.PORT || port, () => console.log(`sever is running on port ${port}`));
@@ -13,7 +15,7 @@ const songs = [
     genre: "HipHop",
     albumCoverUrl:
       "https://i1.sndcdn.com/artworks-000633561964-409g0f-t500x500.jpg",
-    songUrl: "./songs/100-Miles.mp3",
+    songUrl: "/static/songs/100-Miles.mp3",
   },
   {
     id: 2,
@@ -22,7 +24,7 @@ const songs = [
     genre: "Gachi",
     albumCoverUrl:
       "https://i1.sndcdn.com/artworks-9Gt2zdNpPfaUqrl0-kGZ9VQ-t500x500.jpg",
-    songUrl: "./songs/ass-clap.mp3",
+    songUrl: "/static/songs/ass-clap.mp3",
   },
   {
     id: 3,
@@ -30,7 +32,7 @@ const songs = [
     artist: "Galaxybois",
     genre: "DanishPop",
     albumCoverUrl: "https://i.ytimg.com/vi/4R8SPzu7NcU/maxresdefault.jpg",
-    songUrl: "./songs/fisk-til-mig.mp3",
+    songUrl: "/static/songs/fisk-til-mig.mp3",
   },
   {
     id: 4,
@@ -39,7 +41,7 @@ const songs = [
     genre: "Electronic",
     albumCoverUrl:
       "https://i.ytimg.com/vi/xdIZYeWxkPA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCYMh3WNyvYmriGhF1UG5zRpAi_nw.png",
-    songUrl: "./songs/Tango-REMIX.mp3",
+    songUrl: "/static/songs/Tango-REMIX.mp3",
   },
   {
     id: 5,
@@ -47,7 +49,7 @@ const songs = [
     artist: "Nintendo",
     genre: "ElevatorMusic",
     albumCoverUrl: "https://i.ytimg.com/vi/LYN6DRDQcjI/hqdefault.jpg",
-    songUrl: "./songs/Wii-Theme.mp3",
+    songUrl: "/static/songs/Wii-Theme.mp3",
   },
 ];
 
@@ -56,3 +58,4 @@ app.get("/songs", (req, res) => {
     songs,
   });
 });
+  
