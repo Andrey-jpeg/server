@@ -1,11 +1,13 @@
-var cors = require('cors')
+var cors = require("cors");
 const app = require("express")();
-const express = require('express')
+const express = require("express");
 app.use(cors());
-app.use('/static', express.static('public'));
+app.use("/static", express.static("public"));
 const port = 3000;
 
-app.listen(process.env.PORT || port, () => console.log(`sever is running on port ${port}`));
+app.listen(process.env.PORT || port, () =>
+  console.log(`sever is running on port ${port}`)
+);
 
 const songs = [
   {
@@ -51,6 +53,16 @@ const songs = [
     albumCoverUrl: "https://i.ytimg.com/vi/LYN6DRDQcjI/hqdefault.jpg",
     songUrl: "/static/songs/Wii-Theme.mp3",
   },
+
+  {
+    id: 6,
+    name: "All I Want for Christmas Is You",
+    artist: "Mariah Carey",
+    genre: "ChristmasMusic",
+    albumCoverUrl:
+      "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
+    songUrl: "/static/songs/all-i-want-for-christmas.mp3",
+  },
 ];
 
 app.get("/songs", (req, res) => {
@@ -58,4 +70,3 @@ app.get("/songs", (req, res) => {
     songs,
   });
 });
-  
