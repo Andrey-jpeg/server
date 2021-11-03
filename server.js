@@ -70,7 +70,7 @@ const playlists = [
     id: 1,
     name: "My Banger PLaylist",
     coverArt:
-      "https://i1.sndcdn.com/artworks-00063356196https://i.scdn.co/image/ab67706c0000bebb9e23d86f0cbd024c67a3fd824-409g0f-t500x500.jpg",
+      "https://i.scdn.co/image/ab67706c0000bebb1bf14bcf4226d2b0d5a0c0e6",
     songId: [1, 3, 5],
   },
 ];
