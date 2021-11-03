@@ -74,7 +74,7 @@ const playlists = [
     songId: [1, 3, 5],
   },
   {
-    id: 1,
+    id: 2,
     name: "Christmas PLaylist",
     coverArt:
       "https://i0.wp.com/cottageintheoaks.com/wp-content/uploads/Christmas-Playlist-created-by-Cottage-in-the-Oaks-600x600.jpg",
