@@ -65,8 +65,24 @@ const songs = [
   },
 ];
 
+const playlists = [
+  {
+    id: 1,
+    name: "My Banger PLaylist",
+    coverArt:
+      "https://i1.sndcdn.com/artworks-00063356196https://i.scdn.co/image/ab67706c0000bebb9e23d86f0cbd024c67a3fd824-409g0f-t500x500.jpg",
+    songId: [1, 3, 5],
+  },
+];
+
 app.get("/songs", (req, res) => {
   res.status(200).send({
     songs,
+  });
+});
+
+app.get("/playlists", (req, res) => {
+  res.status(200).send({
+    playlists,
   });
 });
