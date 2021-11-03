@@ -73,6 +73,13 @@ const playlists = [
       "https://i.scdn.co/image/ab67706c0000bebb1bf14bcf4226d2b0d5a0c0e6",
     songId: [1, 3, 5],
   },
+  {
+    id: 1,
+    name: "Christmas PLaylist",
+    coverArt:
+      "https://i0.wp.com/cottageintheoaks.com/wp-content/uploads/Christmas-Playlist-created-by-Cottage-in-the-Oaks-600x600.jpg",
+    songId: [2, 6],
+  },
 ];
 
 app.get("/songs", (req, res) => {
