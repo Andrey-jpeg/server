@@ -128,7 +128,8 @@ const playlists = [
   {
     id: 4,
     name: "Yfitops Top Tracks",
-    coverArt: "static/images/yfitops-top-tracksBG.png",
+    coverArt:
+      "https://raw.githubusercontent.com/Andrey-jpeg/server/main/public/images/yfitops-top-tracksBG.png",
     songId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
   },
 ];
