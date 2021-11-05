@@ -15,8 +15,7 @@ const songs = [
     name: "100 miles",
     artist: "Skinbone",
     genre: "HipHop",
-    albumCoverUrl:
-      "https://i1.sndcdn.com/artworks-000633561964-409g0f-t500x500.jpg",
+    albumCoverUrl: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
     songUrl: "/static/songs/100-Miles.mp3",
   },
   {
@@ -24,8 +23,7 @@ const songs = [
     name: "ass clap",
     artist: "Van",
     genre: "Gachi",
-    albumCoverUrl:
-      "https://i1.sndcdn.com/artworks-9Gt2zdNpPfaUqrl0-kGZ9VQ-t500x500.jpg",
+    albumCoverUrl: "https://img.youtube.com/vi/y3YHnkCDnKY/maxresdefault.jpg",
     songUrl: "/static/songs/ass-clap.mp3",
   },
   {
@@ -33,7 +31,7 @@ const songs = [
     name: "Fisk til mig",
     artist: "Galaxybois",
     genre: "DanishPop",
-    albumCoverUrl: "https://i.ytimg.com/vi/4R8SPzu7NcU/maxresdefault.jpg",
+    albumCoverUrl: "https://img.youtube.com/vi/JyLCedJJ_Yk/mqdefault.jpg",
     songUrl: "/static/songs/fisk-til-mig.mp3",
   },
   {
@@ -42,7 +40,7 @@ const songs = [
     artist: "STAMPE",
     genre: "Electronic",
     albumCoverUrl:
-      "https://i.ytimg.com/vi/xdIZYeWxkPA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCYMh3WNyvYmriGhF1UG5zRpAi_nw.png",
+      "https://i.scdn.co/image/ab67616d0000b273b3247d420d91678b6041209d",
     songUrl: "/static/songs/Tango-REMIX.mp3",
   },
   {
@@ -62,6 +60,46 @@ const songs = [
     albumCoverUrl:
       "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
     songUrl: "/static/songs/all-i-want-for-christmas.mp3",
+  },
+  {
+    id: 7,
+    name: "We Are One",
+    artist: "Vexento ",
+    genre: "Dance & Electronic",
+    albumCoverUrl: "https://img.youtube.com/vi/Ssvu2yncgWU/maxresdefault.jpg",
+    songUrl: "/static/songs/we-are-one.mp3",
+  },
+  {
+    id: 8,
+    name: "Kontekst",
+    artist: "Buddha",
+    genre: "Dance & Electronic",
+    albumCoverUrl: "https://img.youtube.com/vi/-K_YSjqKgvQ/maxresdefault.jpg",
+    songUrl: "/static/songs/kontekst.mp3",
+  },
+  {
+    id: 9,
+    name: "Last Summer",
+    artist: "Ikson",
+    genre: "House",
+    albumCoverUrl: "https://img.youtube.com/vi/n2oTA5JSk80/maxresdefault.jpg",
+    songUrl: "/static/songs/last-summer.mp3",
+  },
+  {
+    id: 10,
+    name: "Happy Life",
+    artist: "Fredji",
+    genre: "House",
+    albumCoverUrl: "https://img.youtube.com/vi/u4PI5p5bI9k/maxresdefault.jpg",
+    songUrl: "/static/songs/happy-life.mp3",
+  },
+  {
+    id: 11,
+    name: "Up In My Jam (All Of A Sudden)",
+    artist: "Kubbi",
+    genre: "Dance & Electronic",
+    albumCoverUrl: "https://img.youtube.com/vi/tDexBj46oNI/maxresdefault.jpg",
+    songUrl: "/static/songs/up-in-my-jam.mp3",
   },
 ];
 
@@ -87,16 +125,23 @@ const playlists = [
       "https://pbs.twimg.com/profile_images/943046122125197312/D6iFJCqf_400x400.jpg",
     songId: [3, 4],
   },
+  {
+    id: 4,
+    name: "Yfitops Top Tracks",
+    coverArt: "static/images/yfitops-top-tracksBG.png",
+    songId: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+  },
 ];
 
 const recentlyFeatured = [
   {
     id: 1,
     name: "Mariah Carey",
-    coverArt: "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
-    type: "Artist"
-  }
-]
+    coverArt:
+      "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
+    type: "Artist",
+  },
+];
 
 app.get("/songs", (req, res) => {
   res.status(200).send({
