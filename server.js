@@ -75,10 +75,17 @@ const playlists = [
   },
   {
     id: 2,
-    name: "Christmas Playlist",
+    name: "The Christmas Playlist",
     coverArt:
       "https://i0.wp.com/cottageintheoaks.com/wp-content/uploads/Christmas-Playlist-created-by-Cottage-in-the-Oaks-600x600.jpg",
     songId: [2, 6],
+  },
+  {
+    id: 3,
+    name: "Certified Banger Playlist",
+    coverArt:
+      "https://pbs.twimg.com/profile_images/943046122125197312/D6iFJCqf_400x400.jpg",
+    songId: [3, 4],
   },
 ];
 
