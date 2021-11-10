@@ -101,6 +101,51 @@ const songs = [
     albumCoverUrl: "https://img.youtube.com/vi/tDexBj46oNI/maxresdefault.jpg",
     songUrl: "/static/songs/up-in-my-jam.mp3",
   },
+  {
+    id: 12,
+    name: "Stockholm Sunset",
+    artist: "Arc De Soleil",
+    genre: "Dance & Electronic",
+    albumCoverUrl:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg",
+    songUrl: "/static/songs/stockholm-sunset.mp3",
+  },
+  {
+    id: 13,
+    name: "Mango Lover",
+    artist: "Arc De Soleil",
+    genre: "Pop",
+    albumCoverUrl:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg",
+    songUrl: "/static/songs/stockholm-sunset.mp3",
+  },
+  {
+    id: 14,
+    name: "Wild Flower",
+    artist: "Eco Village",
+    genre: "Dance & Electronic",
+    albumCoverUrl:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
+    songUrl: "/static/songs/wild-flower.mp3",
+  },
+  {
+    id: 15,
+    name: "Endless Horizon",
+    artist: "Eco Village",
+    genre: "House",
+    albumCoverUrl:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
+    songUrl: "/static/songs/wild-flower.mp3",
+  },
+  {
+    id: 16,
+    name: "Wings of Fire",
+    artist: "Eco Village",
+    genre: "Rock",
+    albumCoverUrl:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
+    songUrl: "/static/songs/wild-flower.mp3",
+  },
 ];
 
 const playlists = [
@@ -134,6 +179,25 @@ const playlists = [
   },
 ];
 
+const albums = [
+  {
+    id: 1,
+    name: "Sunshine",
+    artist: "Arc De Soleil",
+    coverArt:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg",
+    songId: [12, 13, 13, 12, 13, 12, 13, 12, 12, 13],
+  },
+  {
+    id: 2,
+    name: "Wanderlust",
+    artist: "Eco Village",
+    coverArt:
+      "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
+    songId: [14, 15, 16, 15, 14, 16, 14, 15, 16, 14],
+  },
+];
+
 const recentlyFeatured = [
   {
     id: 1,
@@ -153,6 +217,12 @@ app.get("/songs", (req, res) => {
 app.get("/playlists", (req, res) => {
   res.status(200).send({
     playlists,
+  });
+});
+
+app.get("/albums", (req, res) => {
+  res.status(200).send({
+    albums,
   });
 });
 
