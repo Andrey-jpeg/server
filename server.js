@@ -186,7 +186,7 @@ const albums = [
     artist: "Arc De Soleil",
     coverArt:
       "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg",
-    songId: [12, 13, 13, 12, 13, 12, 13, 12, 12, 13],
+    songId: [12, 13],
   },
   {
     id: 2,
@@ -194,7 +194,7 @@ const albums = [
     artist: "Eco Village",
     coverArt:
       "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
-    songId: [14, 15, 16, 15, 14, 16, 14, 15, 16, 14],
+    songId: [14, 15, 16],
   },
 ];
 
