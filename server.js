@@ -398,3 +398,9 @@ app.get("/artists", (req, res) => {
     artists,
   });
 });
+
+app.get("/artistSongs", (req, res) => {
+  res.status(200).send({
+    artistSongs,
+  });
+});
