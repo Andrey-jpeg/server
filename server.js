@@ -1,7 +1,9 @@
 var cors = require("cors");
+var mongo = require("mongodb");
 const app = require("express")();
 const express = require("express");
 app.use(cors());
+app.use(mongo());
 app.use("/static", express.static("public"));
 const port = 3000;
 
@@ -13,7 +15,7 @@ const songs = [
   {
     id: 1,
     name: "100 miles",
-    artist: "Skinbone",
+    artist: "Mariah Carey",
     genre: "HipHop",
     albumCoverUrl: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
     songUrl: "/static/songs/100-Miles.mp3",
@@ -21,7 +23,7 @@ const songs = [
   {
     id: 2,
     name: "ass clap",
-    artist: "Van",
+    artist: "Mariah Carey",
     genre: "Gachi",
     albumCoverUrl: "https://img.youtube.com/vi/y3YHnkCDnKY/maxresdefault.jpg",
     songUrl: "/static/songs/ass-clap.mp3",
@@ -29,7 +31,7 @@ const songs = [
   {
     id: 3,
     name: "Fisk til mig",
-    artist: "Galaxybois",
+    artist: "Mariah Carey",
     genre: "DanishPop",
     albumCoverUrl: "https://img.youtube.com/vi/JyLCedJJ_Yk/mqdefault.jpg",
     songUrl: "/static/songs/fisk-til-mig.mp3",
@@ -37,7 +39,7 @@ const songs = [
   {
     id: 4,
     name: "Min kan den danser tango remix",
-    artist: "STAMPE",
+    artist: "Mariah Carey",
     genre: "Electronic",
     albumCoverUrl:
       "https://i.scdn.co/image/ab67616d0000b273b3247d420d91678b6041209d",
@@ -46,7 +48,7 @@ const songs = [
   {
     id: 5,
     name: "Wii mii theme",
-    artist: "Nintendo",
+    artist: "Mariah Carey",
     genre: "ElevatorMusic",
     albumCoverUrl: "https://i.ytimg.com/vi/LYN6DRDQcjI/hqdefault.jpg",
     songUrl: "/static/songs/Wii-Theme.mp3",
@@ -72,7 +74,7 @@ const songs = [
   {
     id: 8,
     name: "Kontekst",
-    artist: "Buddha",
+    artist: "Vexento",
     genre: "Dance & Electronic",
     albumCoverUrl: "https://img.youtube.com/vi/-K_YSjqKgvQ/maxresdefault.jpg",
     songUrl: "/static/songs/kontekst.mp3",
@@ -80,7 +82,7 @@ const songs = [
   {
     id: 9,
     name: "Last Summer",
-    artist: "Ikson",
+    artist: "Vexento",
     genre: "House",
     albumCoverUrl: "https://img.youtube.com/vi/n2oTA5JSk80/maxresdefault.jpg",
     songUrl: "/static/songs/last-summer.mp3",
@@ -88,7 +90,7 @@ const songs = [
   {
     id: 10,
     name: "Happy Life",
-    artist: "Fredji",
+    artist: "Vexento",
     genre: "House",
     albumCoverUrl: "https://img.youtube.com/vi/u4PI5p5bI9k/maxresdefault.jpg",
     songUrl: "/static/songs/happy-life.mp3",
@@ -96,7 +98,7 @@ const songs = [
   {
     id: 11,
     name: "Up In My Jam (All Of A Sudden)",
-    artist: "Kubbi",
+    artist: "Vexento",
     genre: "Dance & Electronic",
     albumCoverUrl: "https://img.youtube.com/vi/tDexBj46oNI/maxresdefault.jpg",
     songUrl: "/static/songs/up-in-my-jam.mp3",
@@ -198,13 +200,12 @@ const albums = [
   },
 ];
 
-
 const homescreen = [
   //Each title is an object
   //Change horizontal to false if horizontal is wanted.
   {
     id: 1,
-    title: 'Recently played',
+    title: "Recently played",
     horizontal: true,
     data: [
       {
@@ -212,130 +213,156 @@ const homescreen = [
         uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
       {
-        text: 'Wanderlust',
-        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg',
+        text: "Wanderlust",
+        uri: "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg",
       },
       {
-        text: 'Sunshine',
-        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg',
-      },
-      {        
-        text: 'recently played 1',
-        uri: 'https://picsum.photos/id/1006/200',
+        text: "Sunshine",
+        uri: "https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg",
       },
       {
-        text: 'recently played 2',
-        uri: 'https://picsum.photos/id/1008/200',
+        text: "recently played 1",
+        uri: "https://picsum.photos/id/1006/200",
+      },
+      {
+        text: "recently played 2",
+        uri: "https://picsum.photos/id/1008/200",
       },
     ],
   },
   {
     id: 2,
-    title: 'New Releases',
+    title: "New Releases",
     horizontal: true,
     data: [
       {
-        text: 'Party Monster',
-        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
+        text: "Party Monster",
+        uri: "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
       },
       {
-        text: 'The Weekend',
-        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
+        text: "The Weekend",
+        uri: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max",
       },
       {
-        text: 'Skinbone',
+        text: "Skinbone",
         uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
-    ],  
+    ],
   },
   {
     id: 3,
-    title: 'Featured',
+    title: "Featured",
     horizontal: true,
     data: [
       {
-        text: 'All I want for Christmas is you',
+        text: "All I want for Christmas is you",
         uri: "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
       },
       {
-        text: 'Hardest to Love',
-        uri: 'https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png',
+        text: "Hardest to Love",
+        uri: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
       },
       {
-        text: 'featured 2',
-        uri: 'https://picsum.photos/id/1024/200',
+        text: "featured 2",
+        uri: "https://picsum.photos/id/1024/200",
       },
     ],
   },
   {
     id: 4,
-    title: 'Hits',
+    title: "Hits",
     horizontal: true,
     data: [
       {
-        text: 'Real Life',
-        uri: 'https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png',
+        text: "Real Life",
+        uri: "https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png",
       },
       {
-        text: 'Party Monster',
-        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
+        text: "Party Monster",
+        uri: "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
       },
     ],
   },
   {
     id: 5,
-    title: 'Workout',
+    title: "Workout",
     horizontal: true,
     data: [
       {
-        text: 'The Weekend',
-        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
+        text: "The Weekend",
+        uri: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max",
       },
       {
-        text: 'workout 2',
-        uri: 'https://picsum.photos/id/1024/200',
+        text: "workout 2",
+        uri: "https://picsum.photos/id/1024/200",
       },
     ],
   },
   {
     id: 6,
-    title: 'Mood',
+    title: "Mood",
     horizontal: true,
     data: [
       {
-        text: 'Happy',
-        uri: 'https://static01.nyt.com/images/2018/05/08/well/physed-happiness/physed-happiness-videoSixteenByNineJumbo1600.jpg',
+        text: "Happy",
+        uri: "https://static01.nyt.com/images/2018/05/08/well/physed-happiness/physed-happiness-videoSixteenByNineJumbo1600.jpg",
       },
       {
-        text: 'Cozy',
-        uri: 'https://media.istockphoto.com/photos/still-life-home-comfort-in-the-living-room-picture-id1171746484?k=20&m=1171746484&s=612x612&w=0&h=PFragjXOHNbv5mNQd4Gc5tRSUXrCWUib7l0S8MByuAk=',
+        text: "Cozy",
+        uri: "https://media.istockphoto.com/photos/still-life-home-comfort-in-the-living-room-picture-id1171746484?k=20&m=1171746484&s=612x612&w=0&h=PFragjXOHNbv5mNQd4Gc5tRSUXrCWUib7l0S8MByuAk=",
       },
       {
-        text: 'Sad',
-        uri: 'https://images.ctfassets.net/cnu0m8re1exe/5ky2lGqMYTU3yoeT6dI1P/6764f49b988b06a9cd86451435f4538e/sad.png?fm=jpg&fl=progressive&w=660&h=433&fit=fill',
+        text: "Sad",
+        uri: "https://images.ctfassets.net/cnu0m8re1exe/5ky2lGqMYTU3yoeT6dI1P/6764f49b988b06a9cd86451435f4538e/sad.png?fm=jpg&fl=progressive&w=660&h=433&fit=fill",
       },
     ],
   },
-
 ];
 const artists = [
   {
     id: 1,
     name: "The Weekend",
-    imgUrl: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max"
-  }
+    imgUrl:
+      "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max",
+  },
+  {
+    id: 2,
+    name: "Mariah Carey",
+    imgUrl:
+      "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
+  },
+  {
+    id: 3,
+    name: "Vexento",
+    imgUrl:
+      "https://yt3.ggpht.com/ytc/AKedOLSkA7EY9M3BDPtg3bz98feEifUzDbhG7kMhr9gWEw=s900-c-k-c0x00ffffff-no-rj",
+  },
+  {
+    id: 4,
+    name: "Arc De Soleil",
+    imgUrl:
+      "https://lite-images-i.scdn.co/image/ab6761610000e5ebc2be39210a66f75954b9d3f1",
+  },
+  {
+    id: 5,
+    name: "Eco Village",
+    imgUrl:
+      "https://www.matookerepublic.com/wp-content/uploads/2021/09/WhatsApp-Image-2021-08-31-at-2.15.11-PM-554x375.jpeg",
+  },
 ];
 
 const artistSongs = [
   {
     id: 1,
-    imgUrl: "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
     songName: "Party Monster",
     album: "Starboy",
   },
   {
     id: 2,
-    imgUrl: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
+    imgUrl:
+      "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
     songName: "Hardest To Love",
     album: "After Hours",
   },
@@ -347,15 +374,12 @@ const artistSongs = [
   },
   {
     id: 4,
-    imgUrl: "https://urbando.dk/wp-content/uploads/2021/02/814PdZJQfeL._SL1400_.jpg",
+    imgUrl:
+      "https://urbando.dk/wp-content/uploads/2021/02/814PdZJQfeL._SL1400_.jpg",
     songName: "Hej!",
-    album: "Hejsa!"
-  }
-
-]
-
-
-
+    album: "Hejsa!",
+  },
+];
 
 app.get("/homescreen", (req, res) => {
   res.status(200).send({
