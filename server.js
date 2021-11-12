@@ -198,13 +198,11 @@ const albums = [
   },
 ];
 
-const recentlyFeatured = [
+const featured = [
   {
     id: 1,
-    name: "Mariah Carey",
-    coverArt:
-      "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
-    type: "Artist",
+    text: 'This is Ariana Grandeeeee',
+    uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
   },
 ];
 
@@ -226,8 +224,8 @@ app.get("/albums", (req, res) => {
   });
 });
 
-app.get("/recentlyFeatured", (req, res) => {
+app.get("/featured", (req, res) => {
   res.status(200).send({
-    recentlyFeatured,
+    featured,
   });
 });
