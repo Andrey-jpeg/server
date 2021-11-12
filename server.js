@@ -232,7 +232,7 @@ const homescreen = [
   {
     id: 2,
     title: 'New Releases',
-    horizontal: true,
+    horizontal: false,
     data: [
       {
         text: 'Party Monster',
