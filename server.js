@@ -235,6 +235,14 @@ const homescreen = [
     horizontal: true,
     data: [
       {
+        text: 'Party Monster',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
+      },
+      {
+        text: 'The Weekend',
+        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
+      },
+      {
         text: 'Skinbone',
         uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
