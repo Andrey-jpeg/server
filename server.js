@@ -357,6 +357,12 @@ const artistSongs = [
     songName: "Real Life",
     album: "Beauty Behind The Madness",
   },
+  {
+    id: 4,
+    imgUrl: "https://urbando.dk/wp-content/uploads/2021/02/814PdZJQfeL._SL1400_.jpg",
+    songName: "Hej!",
+    album: "Hejsa!"
+  }
 
 ]
 
