@@ -263,29 +263,14 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'Ariana Grande',
-        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
-      },
-      {
-        text: 'Song 2',
-        uri: 'https://picsum.photos/id/1012/200',
-      },
-    ],
-  },
-  {
-    id: 3,
-    title: 'XYZ New Releases',
-    horizontal: true,
-    data: [
-      {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'Skinbone',
+        uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
     ],  
   },
   {
-    id: 4,
-    title: 'Based on your recent listening',
+    id: 3,
+    title: 'Featured',
     horizontal: true,
     data: [
       {
@@ -298,9 +283,53 @@ const homescreen = [
       },
     ],
   },
+  {
+    id: 4,
+    title: 'Hits',
+    horizontal: true,
+    data: [
+      {
+        text: 'Song 1',
+        uri: 'https://picsum.photos/id/1020/200',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/1024/200',
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Workout',
+    horizontal: true,
+    data: [
+      {
+        text: 'Song 1',
+        uri: 'https://picsum.photos/id/1020/200',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/1024/200',
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Mood',
+    horizontal: true,
+    data: [
+      {
+        text: 'Song 1',
+        uri: 'https://picsum.photos/id/1020/200',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/1024/200',
+      },
+    ],
+  },
+
 ];
-
-
 
 
 
