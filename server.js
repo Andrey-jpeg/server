@@ -235,8 +235,8 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'hejThis is Ariana Grandeeeee',
-        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+        text: "Skinbone",
+        uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
       {
         text: 'Song 2',
@@ -263,7 +263,7 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'hejThis Is Ariana Graneeeede1',
+        text: 'Ariana Grande',
         uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
       },
       {
