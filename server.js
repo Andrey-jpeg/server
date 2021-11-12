@@ -201,9 +201,24 @@ const albums = [
 const featured = [
   {
     id: 1,
-    text: 'This is Ariana Grandeeeee',
+    text: 'Server 1',
     uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
   },
+  {
+    id: 2,
+    text: 'Server 2',
+    uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+  },
+  {
+    id: 3,
+    text: 'Server 3',
+    uri: 'https://picsum.photos/id/1012/200',
+  },
+  {
+    id: 4,
+    text: 'Server 4 ',
+    uri: 'https://picsum.photos/id/1024/200',
+  }
 ];
 
 app.get("/songs", (req, res) => {
