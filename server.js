@@ -226,7 +226,7 @@ const featured = [
 
 
 
-const homeScreen = [
+const homescreen = [
   //Each title is an object
   //Change horizontal to false if horizontal is wanted.
   {
@@ -307,7 +307,7 @@ const homeScreen = [
 
 app.get("/homescreen", (req, res) => {
   res.status(200).send({
-    homeScreen,
+    homescreen,
   });
 });
 
