@@ -198,35 +198,8 @@ const albums = [
   },
 ];
 
-const featured = [
-  {
-    id: 1,
-    text: 'Server 1',
-    uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
-  },
-  {
-    id: 2,
-    text: 'Server 2',
-    uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
-  },
-  {
-    id: 3,
-    text: 'Server 3',
-    uri: 'https://picsum.photos/id/1012/200',
-  },
-  {
-    id: 4,
-    text: 'Server 4 ',
-    uri: 'https://picsum.photos/id/1024/200',
-  }
-];
 
-
-
-
-
-
-const homeScreen = [
+const homescreen = [
   //Each title is an object
   //Change horizontal to false if horizontal is wanted.
   {
@@ -235,24 +208,23 @@ const homeScreen = [
     horizontal: true,
     data: [
       {
-        text: 'hejThis is Ariana Grandeeeee',
-        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+        text: "Skinbone",
+        uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
       {
-        text: 'Song 2',
-        uri: 'https://picsum.photos/id/10/200',
+        text: 'Wanderlust',
+        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg',
       },
-
       {
-        text: 'Song 3',
-        uri: 'https://picsum.photos/id/1002/200',
+        text: 'Sunshine',
+        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg',
       },
       {        
-        text: 'Song 4',
+        text: 'recently played 1',
         uri: 'https://picsum.photos/id/1006/200',
       },
       {
-        text: 'Song 5',
+        text: 'recently played 2',
         uri: 'https://picsum.photos/id/1008/200',
       },
     ],
@@ -263,51 +235,131 @@ const homeScreen = [
     horizontal: true,
     data: [
       {
-        text: 'hejThis Is Ariana Graneeeede1',
-        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+        text: 'Party Monster',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
       },
       {
-        text: 'Song 2',
-        uri: 'https://picsum.photos/id/1012/200',
+        text: 'The Weekend',
+        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
       },
-    ],
-  },
-  {
-    id: 3,
-    title: 'XYZ New Releases',
-    horizontal: true,
-    data: [
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'Skinbone',
+        uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
     ],  
   },
   {
-    id: 4,
-    title: 'Based on your recent listening',
+    id: 3,
+    title: 'Featured',
     horizontal: true,
     data: [
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'All I want for Christmas is you',
+        uri: "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
       },
       {
-        text: 'Song 2',
+        text: 'Hardest to Love',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png',
+      },
+      {
+        text: 'featured 2',
         uri: 'https://picsum.photos/id/1024/200',
       },
     ],
   },
+  {
+    id: 4,
+    title: 'Hits',
+    horizontal: true,
+    data: [
+      {
+        text: 'Real Life',
+        uri: 'https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png',
+      },
+      {
+        text: 'Party Monster',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Workout',
+    horizontal: true,
+    data: [
+      {
+        text: 'The Weekend',
+        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
+      },
+      {
+        text: 'workout 2',
+        uri: 'https://picsum.photos/id/1024/200',
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Mood',
+    horizontal: true,
+    data: [
+      {
+        text: 'Happy',
+        uri: 'https://static01.nyt.com/images/2018/05/08/well/physed-happiness/physed-happiness-videoSixteenByNineJumbo1600.jpg',
+      },
+      {
+        text: 'Cozy',
+        uri: 'https://media.istockphoto.com/photos/still-life-home-comfort-in-the-living-room-picture-id1171746484?k=20&m=1171746484&s=612x612&w=0&h=PFragjXOHNbv5mNQd4Gc5tRSUXrCWUib7l0S8MByuAk=',
+      },
+      {
+        text: 'Sad',
+        uri: 'https://images.ctfassets.net/cnu0m8re1exe/5ky2lGqMYTU3yoeT6dI1P/6764f49b988b06a9cd86451435f4538e/sad.png?fm=jpg&fl=progressive&w=660&h=433&fit=fill',
+      },
+    ],
+  },
+
+];
+const artists = [
+  {
+    id: 1,
+    name: "The Weekend",
+    imgUrl: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max"
+  }
 ];
 
+const artistSongs = [
+  {
+    id: 1,
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
+    songName: "Party Monster",
+    album: "Starboy",
+  },
+  {
+    id: 2,
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
+    songName: "Hardest To Love",
+    album: "After Hours",
+  },
+  {
+    id: 3,
+    imgUrl: "https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png",
+    songName: "Real Life",
+    album: "Beauty Behind The Madness",
+  },
+  {
+    id: 4,
+    imgUrl: "https://urbando.dk/wp-content/uploads/2021/02/814PdZJQfeL._SL1400_.jpg",
+    songName: "Hej!",
+    album: "Hejsa!"
+  }
 
+]
 
 
 
 
 app.get("/homescreen", (req, res) => {
   res.status(200).send({
-    homeScreen,
+    homescreen,
   });
 });
 
@@ -332,5 +384,17 @@ app.get("/albums", (req, res) => {
 app.get("/featured", (req, res) => {
   res.status(200).send({
     featured,
+  });
+});
+
+app.get("/artists", (req, res) => {
+  res.status(200).send({
+    artists,
+  });
+});
+
+app.get("/artistSongs", (req, res) => {
+  res.status(200).send({
+    artistSongs,
   });
 });
