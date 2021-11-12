@@ -330,6 +330,13 @@ const homescreen = [
   },
 
 ];
+const artists = [
+  {
+    id: 1,
+    name: "The Weekend",
+    imgUrl: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max"
+  }
+]
 
 
 
@@ -361,5 +368,11 @@ app.get("/albums", (req, res) => {
 app.get("/featured", (req, res) => {
   res.status(200).send({
     featured,
+  });
+});
+
+app.get("/artists", (req, res) => {
+  res.status(200).send({
+    artists,
   });
 });
