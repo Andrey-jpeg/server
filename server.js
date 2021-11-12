@@ -336,6 +336,28 @@ const artists = [
     name: "The Weekend",
     imgUrl: "https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max"
   }
+];
+
+const artistSongs = [
+  {
+    id: 1,
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg",
+    songName: "Party Monster",
+    album: "Starboy",
+  },
+  {
+    id: 2,
+    imgUrl: "https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png",
+    songName: "Hardest To Love",
+    album: "After Hours",
+  },
+  {
+    id: 3,
+    imgUrl: "https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png",
+    songName: "Real Life",
+    album: "Beauty Behind The Madness",
+  },
+
 ]
 
 
