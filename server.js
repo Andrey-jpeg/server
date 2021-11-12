@@ -1,9 +1,7 @@
 var cors = require("cors");
-var mongo = require("mongodb");
 const app = require("express")();
 const express = require("express");
 app.use(cors());
-app.use(mongo());
 app.use("/static", express.static("public"));
 const port = 3000;
 
