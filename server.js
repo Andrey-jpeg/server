@@ -221,6 +221,96 @@ const featured = [
   }
 ];
 
+
+
+
+
+
+const homeScreen = [
+  //Each title is an object
+  //Change horizontal to false if horizontal is wanted.
+  {
+    id = 1,
+    title: 'Recently played',
+    horizontal: true,
+    data: [
+      {
+        text: 'hejThis is Ariana Grandeeeee',
+        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/10/200',
+      },
+
+      {
+        text: 'Song 3',
+        uri: 'https://picsum.photos/id/1002/200',
+      },
+      {        
+        text: 'Song 4',
+        uri: 'https://picsum.photos/id/1006/200',
+      },
+      {
+        text: 'Song 5',
+        uri: 'https://picsum.photos/id/1008/200',
+      },
+    ],
+  },
+  {
+    id = 2,
+    title: 'New Releases',
+    horizontal: true,
+    data: [
+      {
+        text: 'hejThis Is Ariana Graneeeede1',
+        uri: 'https://i.scdn.co/image/ab67706f000000034a54a41a2760b74e1d68d100',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/1012/200',
+      },
+    ],
+  },
+  {
+    id = 3,
+    title: 'XYZ New Releases',
+    horizontal: true,
+    data: [
+      {
+        text: 'Song 1',
+        uri: 'https://picsum.photos/id/1020/200',
+      },
+    ],  
+  },
+  {
+    id = 4,
+    title: 'Based on your recent listening',
+    horizontal: true,
+    data: [
+      {
+        text: 'Song 1',
+        uri: 'https://picsum.photos/id/1020/200',
+      },
+      {
+        text: 'Song 2',
+        uri: 'https://picsum.photos/id/1024/200',
+      },
+    ],
+  },
+];
+
+
+
+
+
+
+app.get("/homescreen", (req, res) => {
+  res.status(200).send({
+    homeScreen,
+  });
+});
+
 app.get("/songs", (req, res) => {
   res.status(200).send({
     songs,
