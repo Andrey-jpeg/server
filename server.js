@@ -230,7 +230,7 @@ const homeScreen = [
   //Each title is an object
   //Change horizontal to false if horizontal is wanted.
   {
-    id = 1,
+    id: 1,
     title: 'Recently played',
     horizontal: true,
     data: [
@@ -258,7 +258,7 @@ const homeScreen = [
     ],
   },
   {
-    id = 2,
+    id: 2,
     title: 'New Releases',
     horizontal: true,
     data: [
@@ -273,7 +273,7 @@ const homeScreen = [
     ],
   },
   {
-    id = 3,
+    id: 3,
     title: 'XYZ New Releases',
     horizontal: true,
     data: [
@@ -284,7 +284,7 @@ const homeScreen = [
     ],  
   },
   {
-    id = 4,
+    id: 4,
     title: 'Based on your recent listening',
     horizontal: true,
     data: [
