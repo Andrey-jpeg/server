@@ -250,8 +250,8 @@ const homescreen = [
         uri: "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
       },
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'Hardest to Love',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/c/c1/The_Weeknd_-_After_Hours.png',
       },
       {
         text: 'Song 2',
@@ -265,12 +265,12 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'Real Life',
+        uri: 'https://pbs.twimg.com/media/CRmgSqtUAAET5Kn.png',
       },
       {
-        text: 'Song 2',
-        uri: 'https://picsum.photos/id/1024/200',
+        text: 'Party Monster',
+        uri: 'https://upload.wikimedia.org/wikipedia/en/d/d7/The_Weeknd_-_Party_Monster.jpg',
       },
     ],
   },
@@ -295,8 +295,8 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'Happy',
+        uri: 'https://static01.nyt.com/images/2018/05/08/well/physed-happiness/physed-happiness-videoSixteenByNineJumbo1600.jpg',
       },
       {
         text: 'Song 2',
