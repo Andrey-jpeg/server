@@ -212,13 +212,12 @@ const homescreen = [
         uri: "https://img.youtube.com/vi/Cwkej79U3ek/maxresdefault.jpg",
       },
       {
-        text: 'Song 2',
-        uri: 'https://picsum.photos/id/10/200',
+        text: 'Wanderlust',
+        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/wanderlust_400.jpg',
       },
-
       {
-        text: 'Song 3',
-        uri: 'https://picsum.photos/id/1002/200',
+        text: 'Sunshine',
+        uri: 'https://d34qmkt8w5wll9.cloudfront.net/album-covers/medium/sunshine_944.jpg',
       },
       {        
         text: 'Song 4',
@@ -246,6 +245,10 @@ const homescreen = [
     title: 'Featured',
     horizontal: true,
     data: [
+      {
+        text: 'All I want for Christmas is you',
+        uri: "https://www.ladbible.com/cdn-cgi/image/width=720,quality=70,format=jpeg,fit=pad,dpr=1/https%3A%2F%2Fs3-images.ladbible.com%2Fs3%2Fcontent%2F7a640f655f9f156e5ed19f58d6e32131.png",
+      },
       {
         text: 'Song 1',
         uri: 'https://picsum.photos/id/1020/200',
@@ -277,8 +280,8 @@ const homescreen = [
     horizontal: true,
     data: [
       {
-        text: 'Song 1',
-        uri: 'https://picsum.photos/id/1020/200',
+        text: 'The Weekend',
+        uri: 'https://image-cdn.hypb.st/https%3A%2F%2Fhypebeast.com%2Fwp-content%2Fblogs.dir%2F6%2Ffiles%2F2017%2F01%2Fthe-weeknd-party-monster-music-video-0.jpg?w=960&cbr=1&q=90&fit=max',
       },
       {
         text: 'Song 2',
