@@ -174,6 +174,53 @@ recordRoutes.route("/playlists").get(async function (_req, res) {
       }
     });
 });
+
+recordRoutes.route("/search/:searchSong").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+
+  searchSong = _req.params.searchSong;
+  //console.log(searchSong);
+  function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  }
+  console.log(escapeRegExp(searchSong));
+  dbConnect
+    .collection("songs")
+    //.find({ name: { $regex: new RegExp(escapeRegExp(searchSong), "i") } })
+    .aggregate([
+      {
+        $match: { name: { $regex: new RegExp(escapeRegExp(searchSong), "i") } },
+      },
+      {
+        $lookup: {
+          from: "artists",
+          localField: "artist_id",
+          foreignField: "_id",
+          as: "artist_id",
+        },
+      },
+
+      {
+        $group: {
+          _id: "$_id",
+          name: { $first: "$name" },
+          genre: { $first: "$genre" },
+          albumCoverUrl: { $first: "$albumCoverUrl" },
+          songUrl: { $first: "$songUrl" },
+          artist_id: { $first: "$artist_id" },
+        },
+      },
+    ])
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).send("Error getting songs!");
+        return console.log(err);
+      } else {
+        //const songs = result;
+        res.send({ result });
+      }
+    });
+});
 /*
 recordRoutes
   .route("/playlists/:playlistID/songs")
@@ -251,7 +298,7 @@ recordRoutes.route("/playlistsagg").get(async function (_req, res) {
     });
   });*/
 
-// Create a new song.
+// Create a new playlist.
 /*
 recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
   const dbConnect = dbo.getDb();
