@@ -366,6 +366,22 @@ recordRoutes
         }
       });
   });
+
+recordRoutes.route("/adsvisual").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+
+  dbConnect
+    .collection("adsVisual")
+    .aggregate([{ $sample: { size: 1 } }])
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(400).send("Error fetching listings!");
+      } else {
+        const adsVisual = result;
+        res.send({ adsVisual });
+      }
+    });
+});
 /*
 recordRoutes
   .route("/playlists/:playlistID/songs")
