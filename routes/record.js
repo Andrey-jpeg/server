@@ -183,7 +183,6 @@ recordRoutes.route("/search/:searchSong").get(async function (_req, res) {
   function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
   }
-  console.log(escapeRegExp(searchSong));
   dbConnect
     .collection("songs")
     //.find({ name: { $regex: new RegExp(escapeRegExp(searchSong), "i") } })
@@ -221,6 +220,152 @@ recordRoutes.route("/search/:searchSong").get(async function (_req, res) {
       }
     });
 });
+
+recordRoutes.route("/artist/songs/:artist_id").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+
+  artist_id = _req.params.artist_id;
+  //console.log(searchSong);
+  function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  }
+  dbConnect
+    .collection("songs")
+    //.find({ name: { $regex: new RegExp(escapeRegExp(searchSong), "i") } })
+    .aggregate([
+      {
+        $match: {
+          artist_id: ObjectId(artist_id),
+        },
+      },
+      {
+        $lookup: {
+          from: "artists",
+          localField: "artist_id",
+          foreignField: "_id",
+          as: "artist_id",
+        },
+      },
+
+      {
+        $group: {
+          _id: "$_id",
+          name: { $first: "$name" },
+          genre: { $first: "$genre" },
+          albumCoverUrl: { $first: "$albumCoverUrl" },
+          songUrl: { $first: "$songUrl" },
+          artist_id: { $first: "$artist_id" },
+        },
+      },
+    ])
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).send("Error getting artist songs!");
+        return console.log(err);
+      } else {
+        //const songs = result;
+        res.send({ result });
+      }
+    });
+});
+
+recordRoutes
+  .route("/searchAlbums/:searchAlbum")
+  .get(async function (_req, res) {
+    const dbConnect = dbo.getDb();
+
+    searchAlbum = _req.params.searchAlbum;
+    function escapeRegExp(str) {
+      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    }
+    dbConnect
+      .collection("albums")
+      .aggregate([
+        {
+          $match: {
+            name: { $regex: new RegExp(escapeRegExp(searchAlbum), "i") },
+          },
+        },
+        {
+          $lookup: {
+            from: "songs",
+            localField: "songs",
+            foreignField: "_id",
+            as: "songs",
+          },
+        },
+        {
+          $lookup: {
+            from: "artists",
+            localField: "artist_id",
+            foreignField: "_id",
+            as: "artist_id",
+          },
+        },
+        {
+          $unwind: {
+            path: "$songs",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: "artists",
+            localField: "songs.artist_id",
+            foreignField: "_id",
+            as: "songs.artist_id",
+          },
+        },
+
+        {
+          $group: {
+            _id: "$_id",
+            name: { $first: "$name" },
+            artist_id: { $first: "$artist_id" },
+            coverArt: { $first: "$coverArt" },
+            songs: { $push: "$songs" },
+          },
+        },
+      ])
+      .toArray((err, result) => {
+        if (err) {
+          res.status(400).send("Error getting albums!");
+          return console.log(err);
+        } else {
+          //const songs = result;
+          res.send({ result });
+        }
+      });
+  });
+
+recordRoutes
+  .route("/searchArtists/:searchArtist")
+  .get(async function (_req, res) {
+    const dbConnect = dbo.getDb();
+
+    searchArtist = _req.params.searchArtist;
+    function escapeRegExp(str) {
+      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    }
+    dbConnect
+      .collection("artists")
+      .aggregate([
+        {
+          $match: {
+            name: { $regex: new RegExp(escapeRegExp(searchArtist), "i") },
+          },
+        },
+      ])
+      .toArray((err, result) => {
+        if (err) {
+          res.status(400).send("Error getting artists!");
+          return console.log(err);
+        } else {
+          //const songs = result;
+          res.send({ result });
+        }
+      });
+  });
 /*
 recordRoutes
   .route("/playlists/:playlistID/songs")
