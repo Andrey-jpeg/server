@@ -228,8 +228,7 @@ recordRoutes.route("/adsvisual").get(async function (_req, res) {
 
   dbConnect
     .collection("adsVisual")
-    .find({})
-    .limit(50)
+    .aggregate([{ $sample: { size: 1 } }])
     .toArray(function (err, result) {
       if (err) {
         res.status(400).send("Error fetching listings!");
