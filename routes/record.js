@@ -326,32 +326,6 @@ recordRoutes.route("/artist/albums/:artist_id").get(async function (_req, res) {
         },
       },
     ])
-    // .aggregate([
-    //   {
-    //     $match: {
-    //       artist_id: ObjectId(artist_id),
-    //     },
-    //   },
-    //   {
-    //     $lookup: {
-    //       from: "artists",
-    //       localField: "artist_id",
-    //       foreignField: "_id",
-    //       as: "artist_id",
-    //     },
-    //   },
-
-    //   {
-    //     $group: {
-    //       _id: "$_id",
-    //       name: { $first: "$name" },
-    //       genre: { $first: "$genre" },
-    //       albumCoverUrl: { $first: "$albumCoverUrl" },
-    //       songUrl: { $first: "$songUrl" },
-    //       artist_id: { $first: "$artist_id" },
-    //     },
-    //   },
-    // ])
     .toArray((err, result) => {
       if (err) {
         res.status(400).send("Error getting artist songs!");
