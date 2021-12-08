@@ -528,17 +528,18 @@ recordRoutes.route("/playlistsagg").get(async function (_req, res) {
   });*/
 
 // Create a new playlist.
-/*
+
 recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
   const dbConnect = dbo.getDb();
   const matchDocument = {
     name: req.body.name,
-    coverArt: req.body.coverArt,
+    coverArt:
+      "https://cdn.discordapp.com/attachments/888333459225989175/902143990399393822/yfitops.png",
     songs: req.body.songs,
   };
 
   dbConnect
-    .collection("matches")
+    .collection("playlists")
     .insertOne(matchDocument, function (err, result) {
       if (err) {
         res.status(400).send("Error inserting matches!");
@@ -548,7 +549,6 @@ recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
       }
     });
 });
-*/
 
 //Needs to be made into calls to database at some point:
 const homescreen = [
