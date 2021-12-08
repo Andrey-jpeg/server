@@ -527,7 +527,7 @@ recordRoutes.route("/playlistsagg").get(async function (_req, res) {
     });
   });*/
 
-// Create a new playlist.
+// Creates a new playlist.
 
 recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
   const dbConnect = dbo.getDb();
@@ -548,6 +548,24 @@ recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
         res.status(204).send();
       }
     });
+});
+
+// Adds a song to a given playlist
+recordRoutes.route("/playlist/addsong").post(function (req, res) {
+  const dbConnect = dbo.getDb();
+
+  dbConnect.collection("playlists").findOneAndUpdate(
+    { _id: ObjectId(req.body.id) },
+    { $push: { songs: ObjectId(req.body.songId) } },
+
+    function (error, success) {
+      if (error) {
+        console.log("error adding" + error);
+      } else {
+        console.log("added song" + success);
+      }
+    }
+  );
 });
 
 //Needs to be made into calls to database at some point:
