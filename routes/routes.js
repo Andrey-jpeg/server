@@ -2,16 +2,16 @@ const { ObjectId } = require("bson");
 const { json } = require("express");
 const express = require("express");
 
-// recordRoutes is an instance of the express router.
+// routes is an instance of the express router.
 // We use it to define our routes.
 // The router will be added as a middleware and will take control of requests starting with path /listings.
-const recordRoutes = express.Router();
+const routes = express.Router();
 
 // This will help us connect to the database
 const dbo = require("../db/conn");
 
 // This section will help you get a list of all the records.
-recordRoutes.route("/songs").get(async function (_req, res) {
+routes.route("/songs").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect
@@ -27,7 +27,7 @@ recordRoutes.route("/songs").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/playlistsbasic").get(async function (_req, res) {
+routes.route("/playlistsbasic").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect
@@ -44,7 +44,7 @@ recordRoutes.route("/playlistsbasic").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/recentlyplayed").get(async function (_req, res) {
+routes.route("/recentlyplayed").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
     .collection("recentlyplayed")
@@ -69,7 +69,7 @@ recordRoutes.route("/recentlyplayed").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/albums").get(async function (_req, res) {
+routes.route("/albums").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
     .collection("albums")
@@ -127,7 +127,7 @@ recordRoutes.route("/albums").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/playlists").get(async function (_req, res) {
+routes.route("/playlists").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
   dbConnect
     .collection("playlists")
@@ -175,7 +175,7 @@ recordRoutes.route("/playlists").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/search/:searchSong").get(async function (_req, res) {
+routes.route("/search/:searchSong").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   searchSong = _req.params.searchSong;
@@ -221,7 +221,7 @@ recordRoutes.route("/search/:searchSong").get(async function (_req, res) {
     });
 });
 
-recordRoutes.route("/artist/songs/:artist_id").get(async function (_req, res) {
+routes.route("/artist/songs/:artist_id").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   artist_id = _req.params.artist_id;
@@ -268,7 +268,7 @@ recordRoutes.route("/artist/songs/:artist_id").get(async function (_req, res) {
       }
     });
 });
-recordRoutes.route("/artist/albums/:artist_id").get(async function (_req, res) {
+routes.route("/artist/albums/:artist_id").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   artist_id = _req.params.artist_id;
@@ -337,7 +337,7 @@ recordRoutes.route("/artist/albums/:artist_id").get(async function (_req, res) {
     });
 });
 
-recordRoutes
+routes
   .route("/searchAlbums/:searchAlbum")
   .get(async function (_req, res) {
     const dbConnect = dbo.getDb();
@@ -406,7 +406,7 @@ recordRoutes
       });
   });
 
-recordRoutes
+routes
   .route("/searchArtists/:searchArtist")
   .get(async function (_req, res) {
     const dbConnect = dbo.getDb();
@@ -435,7 +435,7 @@ recordRoutes
       });
   });
 
-recordRoutes.route("/adsvisual").get(async function (_req, res) {
+routes.route("/adsvisual").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect
@@ -451,7 +451,7 @@ recordRoutes.route("/adsvisual").get(async function (_req, res) {
     });
 });
 /*
-recordRoutes
+routes
   .route("/playlists/:playlistID/songs")
   .get(async function (req, res) {
     const dbConnect = dbo.getDb();
@@ -475,7 +475,7 @@ recordRoutes
       });
 */
 /*
-recordRoutes.route("/playlistsagg").get(async function (_req, res) {
+routes.route("/playlistsagg").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect
@@ -529,7 +529,7 @@ recordRoutes.route("/playlistsagg").get(async function (_req, res) {
 
 // Creates a new playlist.
 
-recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
+routes.route("/playlist/addplaylist").post(function (req, res) {
   const dbConnect = dbo.getDb();
   const matchDocument = {
     name: req.body.name,
@@ -551,7 +551,7 @@ recordRoutes.route("/playlist/addplaylist").post(function (req, res) {
 });
 
 // Adds a song to a given playlist
-recordRoutes.route("/playlist/addsong").post(function (req, res) {
+routes.route("/playlist/addsong").post(function (req, res) {
   const dbConnect = dbo.getDb();
 
   dbConnect.collection("playlists").findOneAndUpdate(
@@ -750,22 +750,22 @@ const artistSongs = [
   },
 ];
 
-recordRoutes.route("/homescreen").get(async function (_req, res) {
+routes.route("/homescreen").get(async function (_req, res) {
   res.status(200).send({
     homescreen,
   });
 });
 
-recordRoutes.route("/artists").get(async function (_req, res) {
+routes.route("/artists").get(async function (_req, res) {
   res.status(200).send({
     artists,
   });
 });
 
-recordRoutes.route("/artistSongs").get(async function (_req, res) {
+routes.route("/artistSongs").get(async function (_req, res) {
   res.status(200).send({
     artistSongs,
   });
 });
 
-module.exports = recordRoutes;
+module.exports = routes;
