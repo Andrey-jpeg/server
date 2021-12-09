@@ -1,6 +1,7 @@
 const { ObjectId } = require("bson");
 const { json } = require("express");
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 // routes is an instance of the express router.
 // We use it to define our routes.
@@ -11,6 +12,42 @@ const routes = express.Router();
 const dbo = require("../db/conn");
 
 // This section will help you get a list of all the records.
+
+routes.route("/signup").post(async (req, res) => {
+  const passwordHash = bcrypt.hashSync(req.body.password,10);
+  
+  const user = {
+    email: req.body.email,
+    password: passwordHash
+  }
+
+  const dbConnect = dbo.getDb();
+  const collection = dbConnect.collection('users')
+
+  collection.insertOne({ timestamp: new Date(), ...user }, ((err, result) => {
+    res.sendStatus(200);
+   }));
+})
+
+routes.route("/login").post(async(req, res) => {
+  const dbConnect = dbo.getDb();
+  
+  const collection = dbConnect.collection('users')
+  const user = await collection.findOne({email: req.body.email})
+
+  if (user) {
+    // check user password with hashed password stored in the database
+    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    if (validPassword) {
+      res.status(200).send(user._id)
+    } else {
+      res.status(400).json({ error: "Invalid Password" });
+    }
+  } else {
+    res.status(401).json({ error: "User does not exist" });
+  }
+}) 
+
 routes.route("/songs").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
