@@ -14,39 +14,42 @@ const dbo = require("../db/conn");
 // This section will help you get a list of all the records.
 
 routes.route("/signup").post(async (req, res) => {
-  const passwordHash = bcrypt.hashSync(req.body.password,10);
-  
+  const passwordHash = bcrypt.hashSync(req.body.password, 10);
+
   const user = {
     email: req.body.email,
-    password: passwordHash
-  }
+    password: passwordHash,
+  };
 
   const dbConnect = dbo.getDb();
-  const collection = dbConnect.collection('users')
+  const collection = dbConnect.collection("users");
 
-  collection.insertOne({ timestamp: new Date(), ...user }, ((err, result) => {
+  collection.insertOne({ timestamp: new Date(), ...user }, (err, result) => {
     res.sendStatus(200);
-   }));
-})
+  });
+});
 
-routes.route("/login").post(async(req, res) => {
+routes.route("/login").post(async (req, res) => {
   const dbConnect = dbo.getDb();
-  
-  const collection = dbConnect.collection('users')
-  const user = await collection.findOne({email: req.body.email})
+
+  const collection = dbConnect.collection("users");
+  const user = await collection.findOne({ email: req.body.email });
 
   if (user) {
     // check user password with hashed password stored in the database
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
     if (validPassword) {
-      res.status(200).send(user._id)
+      res.status(200).send(user._id);
     } else {
       res.status(400).json({ error: "Invalid Password" });
     }
   } else {
     res.status(401).json({ error: "User does not exist" });
   }
-}) 
+});
 
 routes.route("/songs").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
@@ -212,6 +215,65 @@ routes.route("/playlists").get(async function (_req, res) {
     });
 });
 
+routes.route("/playlists/:user_id").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
+  user_id = _req.params.user_id;
+  console.log(user_id);
+  try {
+    dbConnect
+      .collection("playlists")
+      .aggregate([
+        {
+          $match: {
+            user_id: ObjectId(user_id),
+          },
+        },
+        {
+          $lookup: {
+            from: "songs",
+            localField: "songs",
+            foreignField: "_id",
+            as: "songs",
+          },
+        },
+        {
+          $unwind: {
+            path: "$songs",
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: "artists",
+            localField: "songs.artist_id",
+            foreignField: "_id",
+            as: "songs.artist_id",
+          },
+        },
+
+        {
+          $group: {
+            _id: "$_id",
+            name: { $first: "$name" },
+            coverArt: { $first: "$coverArt" },
+            songs: { $push: "$songs" },
+          },
+        },
+      ])
+      .toArray((err, result) => {
+        if (err) {
+          res.status(400).send("Error getting playlists!");
+          return console.log(err);
+        } else {
+          const playlists = result;
+          res.send({ playlists });
+        }
+      });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 routes.route("/search/:searchSong").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
 
@@ -374,103 +436,99 @@ routes.route("/artist/albums/:artist_id").get(async function (_req, res) {
     });
 });
 
-routes
-  .route("/searchAlbums/:searchAlbum")
-  .get(async function (_req, res) {
-    const dbConnect = dbo.getDb();
+routes.route("/searchAlbums/:searchAlbum").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
 
-    searchAlbum = _req.params.searchAlbum;
-    function escapeRegExp(str) {
-      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-    }
-    dbConnect
-      .collection("albums")
-      .aggregate([
-        {
-          $match: {
-            name: { $regex: new RegExp(escapeRegExp(searchAlbum), "i") },
-          },
+  searchAlbum = _req.params.searchAlbum;
+  function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  }
+  dbConnect
+    .collection("albums")
+    .aggregate([
+      {
+        $match: {
+          name: { $regex: new RegExp(escapeRegExp(searchAlbum), "i") },
         },
-        {
-          $lookup: {
-            from: "songs",
-            localField: "songs",
-            foreignField: "_id",
-            as: "songs",
-          },
+      },
+      {
+        $lookup: {
+          from: "songs",
+          localField: "songs",
+          foreignField: "_id",
+          as: "songs",
         },
-        {
-          $lookup: {
-            from: "artists",
-            localField: "artist_id",
-            foreignField: "_id",
-            as: "artist_id",
-          },
+      },
+      {
+        $lookup: {
+          from: "artists",
+          localField: "artist_id",
+          foreignField: "_id",
+          as: "artist_id",
         },
-        {
-          $unwind: {
-            path: "$songs",
-            preserveNullAndEmptyArrays: true,
-          },
+      },
+      {
+        $unwind: {
+          path: "$songs",
+          preserveNullAndEmptyArrays: true,
         },
-        {
-          $lookup: {
-            from: "artists",
-            localField: "songs.artist_id",
-            foreignField: "_id",
-            as: "songs.artist_id",
-          },
+      },
+      {
+        $lookup: {
+          from: "artists",
+          localField: "songs.artist_id",
+          foreignField: "_id",
+          as: "songs.artist_id",
         },
+      },
 
-        {
-          $group: {
-            _id: "$_id",
-            name: { $first: "$name" },
-            artist_id: { $first: "$artist_id" },
-            coverArt: { $first: "$coverArt" },
-            songs: { $push: "$songs" },
-          },
+      {
+        $group: {
+          _id: "$_id",
+          name: { $first: "$name" },
+          artist_id: { $first: "$artist_id" },
+          coverArt: { $first: "$coverArt" },
+          songs: { $push: "$songs" },
         },
-      ])
-      .toArray((err, result) => {
-        if (err) {
-          res.status(400).send("Error getting albums!");
-          return console.log(err);
-        } else {
-          //const songs = result;
-          res.send({ result });
-        }
-      });
-  });
+      },
+    ])
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).send("Error getting albums!");
+        return console.log(err);
+      } else {
+        //const songs = result;
+        res.send({ result });
+      }
+    });
+});
 
-routes
-  .route("/searchArtists/:searchArtist")
-  .get(async function (_req, res) {
-    const dbConnect = dbo.getDb();
+routes.route("/searchArtists/:searchArtist").get(async function (_req, res) {
+  const dbConnect = dbo.getDb();
 
-    searchArtist = _req.params.searchArtist;
-    function escapeRegExp(str) {
-      return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-    }
-    dbConnect
-      .collection("artists")
-      .aggregate([
-        {
-          $match: {
-            name: { $regex: new RegExp(escapeRegExp(searchArtist), "i") },
-          },
+  searchArtist = _req.params.searchArtist;
+  function escapeRegExp(str) {
+    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  }
+  dbConnect
+    .collection("artists")
+    .aggregate([
+      {
+        $match: {
+          name: { $regex: new RegExp(escapeRegExp(searchArtist), "i") },
         },
-      ])
-      .toArray((err, result) => {
-        if (err) {
-          res.status(400).send("Error getting artists!");
-          return console.log(err);
-        } else {
-          //const songs = result;
-          res.send({ result });
-        }
-      });
-  });
+      },
+    ])
+    .toArray((err, result) => {
+      if (err) {
+        res.status(400).send("Error getting artists!");
+        return console.log(err);
+      } else {
+        //const songs = result;
+        res.send({ result });
+      }
+    });
+});
 
 routes.route("/adsvisual").get(async function (_req, res) {
   const dbConnect = dbo.getDb();
@@ -487,94 +545,20 @@ routes.route("/adsvisual").get(async function (_req, res) {
       }
     });
 });
-/*
-routes
-  .route("/playlists/:playlistID/songs")
-  .get(async function (req, res) {
-    const dbConnect = dbo.getDb();
-
-    //res.get(req.params);
-    let playlistID = req.params.playlistID;
-    let thisplaylist = [];
-    console.log(playlistID);
-    dbConnect
-      .collection("playlists")
-      .find({ _id: ObjectId(playlistID) })
-      .limit(50)
-      .toArray(function (err, playlistArray) {
-        if (err) {
-          res.status(400).send("Error fetching listings!");
-        } else {
-          req.push(playlistArray);
-          thisplaylist = playlistArray;
-          console.log(playlistArray);
-        }
-      });
-*/
-/*
-routes.route("/playlistsagg").get(async function (_req, res) {
-  const dbConnect = dbo.getDb();
-
-  dbConnect
-    .collection("playlists")
-    .aggregate([
-      {
-        $lookup: {
-          from: "songs",
-          localField: "songs",
-          foreignField: "_id",
-          as: "songs",
-        },
-      },
-    ])
-    .toArray(function (err, result) {
-      if (err) {
-        res.status(400).send("Error fetching listings!");
-      } else {
-        res.json(result);
-      }
-    });
-});*/
-
-/*
-      .collection("songs");
-    playlistArray
-      .forEach((song) => {
-        console.log(playlistArray.songs[song]);
-      })
-      .find({ _id })
-      .toArray(function (err, playlistArray) {
-        if (err) {
-          res.status(400).send("Error fetching listings!");
-        } else {
-          thisplaylist = playlistArray;
-          console.log(playlistArray);
-        }
-      });
-    console.log(thisplaylist);
-    //let playlistJSON = playlistArray;
-    //console.log(myplaylist);
-    //let songArray = myplaylist[(0)[songs]];
-    /*dbConnect.toArray(function (err) {
-      if (err) {
-        res.status(400).send("oops");
-      } else {
-        //res.json(songArray);
-      }
-    });
-  });*/
 
 // Creates a new playlist.
 
 routes.route("/playlist/addplaylist").post(function (req, res) {
   const dbConnect = dbo.getDb();
-  const matchDocument = {
+  console.log("id for addplalyist" + req.body.user_id);
+  console.log("name" + req.body.name);
+  var matchDocument = {
     name: req.body.name,
     coverArt:
       "https://cdn.discordapp.com/attachments/888333459225989175/902143990399393822/yfitops.png",
     songs: req.body.songs,
+    user_id: ObjectId(req.body.user_id),
   };
-
   dbConnect
     .collection("playlists")
     .insertOne(matchDocument, function (err, result) {
