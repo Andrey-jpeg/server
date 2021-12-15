@@ -5,8 +5,8 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: 3000
-      nodePort: 3000
+      targetPort: 5000
+      nodePort: 5000
   selector:
     app: development
 ---
@@ -28,7 +28,7 @@ spec:
         - name: development
           image: gitlab.sdu.dk:5050/semester-project-e2021/team-03/template:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 5000
           resources:
             limits:
               cpu: 700m
